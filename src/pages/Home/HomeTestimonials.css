@@ -44,7 +44,7 @@
 .vt-trust__container {
   position: relative;
   width: min(1200px, 100%);
-  min-height: 460px;
+  min-height: 700px;
   margin: 0 auto;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .vt-flip--bottom {
-  bottom: -40px;
-  right: 60px;
+  bottom: 0;
+  left: 0;
 }
 
 .vt-flip__inner {
