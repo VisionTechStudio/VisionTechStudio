@@ -1,0 +1,156 @@
+
+/* ==========================================
+   VISIONTECHSTUDIO — OUR CLIENTS
+========================================== */
+
+.home-clients {
+  --c-navy: #14213d;
+  --c-blue: #2563eb;
+  --c-soft: #f1f6ff;
+
+  width: 100%;
+  padding: 90px clamp(20px, 5vw, 64px);
+  background: var(--c-soft);
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.home-clients *,
+.home-clients *::before,
+.home-clients *::after {
+  box-sizing: border-box;
+}
+
+.home-clients__container {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+[data-reveal].intro-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-clients__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  padding-bottom: 56px;
+}
+
+.home-clients__labels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #8592a8;
+  text-transform: uppercase;
+}
+
+.home-clients__statement {
+  max-width: 680px;
+  margin: 0;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.home-clients__statement-strong {
+  color: var(--c-navy);
+}
+
+.home-clients__statement-muted {
+  color: #9aa6ba;
+}
+
+.home-clients__heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 44px;
+}
+
+.home-clients__heading-row h2 {
+  margin: 0;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 800;
+  color: var(--c-navy);
+  letter-spacing: -0.02em;
+}
+
+.home-clients__meta {
+  text-align: right;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.home-clients__meta p {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--c-navy);
+}
+
+.home-clients__strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.home-clients__card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 180px;
+  min-height: 86px;
+  padding: 0 22px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(20, 33, 61, 0.06);
+  font-weight: 700;
+  color: var(--c-navy);
+  font-size: 15px;
+}
+
+.home-clients__card-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--c-navy);
+  color: #ffffff;
+  font-size: 15px;
+}
+
+@media (max-width: 700px) {
+  .home-clients__meta {
+    text-align: left;
+  }
+
+  .home-clients__heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

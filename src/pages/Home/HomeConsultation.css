@@ -1,0 +1,131 @@
+
+/* ==========================================
+   VISIONTECHSTUDIO — OUR PROCESS
+========================================== */
+
+.vt-process {
+  --p-navy: #14213d;
+  --p-navy-deep: #0a1226;
+  --p-blue: #2563eb;
+
+  width: 100%;
+  padding: 100px clamp(20px, 5vw, 64px);
+  background: var(--p-navy-deep);
+  color: #ffffff;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.vt-process *,
+.vt-process *::before,
+.vt-process *::after {
+  box-sizing: border-box;
+}
+
+.vt-process__container {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
+
+.vt-process__heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 28px;
+  padding-bottom: 56px;
+}
+
+.vt-process__heading h2 {
+  margin: 0;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.02;
+}
+
+.vt-process__heading p {
+  max-width: 340px;
+  margin: 0;
+  color: #aebadc;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.vt-process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.vt-process-card {
+  position: relative;
+  min-height: 460px;
+  padding: 28px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.vt-process-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vt-process-card__number {
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(48px, 5vw, 64px);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.vt-process-card__bottom h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.vt-process-card__bottom p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #dbe3f6;
+}
+
+@media (max-width: 1050px) {
+  .vt-process__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vt-process__heading p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .vt-process__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vt-process-card {
+    min-height: 340px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vt-process-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

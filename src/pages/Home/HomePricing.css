@@ -1,0 +1,219 @@
+
+/* ==========================================
+   VISIONTECHSTUDIO — PRICING
+========================================== */
+
+.vt-pricing {
+  --pr-navy: #14213d;
+  --pr-navy-deep: #0a1226;
+  --pr-blue: #2563eb;
+
+  width: 100%;
+  padding: 100px clamp(20px, 5vw, 64px);
+  background: #f1f6ff;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.vt-pricing *,
+.vt-pricing *::before,
+.vt-pricing *::after {
+  box-sizing: border-box;
+}
+
+.vt-pricing__container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.vt-pricing__heading {
+  text-align: center;
+  padding-bottom: 56px;
+}
+
+.vt-pricing__heading h2 {
+  margin: 0 0 14px;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(34px, 5.5vw, 54px);
+  font-weight: 800;
+  color: var(--pr-navy);
+}
+
+.vt-pricing__heading p {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.vt-pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.vt-pricing-card {
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(20, 33, 61, 0.06);
+  overflow: hidden;
+}
+
+.vt-pricing-card.is-popular {
+  transform: translateY(-16px);
+  box-shadow: 0 22px 50px rgba(20, 33, 61, 0.18);
+}
+
+.vt-pricing-card__top {
+  padding: 32px 28px;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__top {
+  background: var(--pr-navy-deep);
+  color: #ffffff;
+}
+
+.vt-pricing-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.vt-pricing-card__title-row h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--pr-navy);
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__title-row h3 {
+  color: #ffffff;
+}
+
+.vt-pricing-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--pr-navy-deep);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vt-pricing-card__top > p {
+  margin: 0 0 22px;
+  color: #6b7280;
+  font-size: 14.5px;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__top > p {
+  color: #aebadc;
+}
+
+.vt-pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--pr-navy);
+  margin-bottom: 22px;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__price {
+  color: #ffffff;
+}
+
+.vt-pricing-card__currency {
+  font-size: 22px;
+}
+
+.vt-pricing-card__period {
+  margin-left: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #9aa6ba;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__period {
+  color: #aebadc;
+}
+
+.vt-pricing-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: 999px;
+  border: 1px solid #e0e6f0;
+  color: var(--pr-navy);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__cta {
+  border: none;
+  background: var(--pr-blue);
+  color: #ffffff;
+}
+
+.vt-pricing-card__cta:hover {
+  background: #f1f6ff;
+}
+
+.vt-pricing-card.is-popular .vt-pricing-card__cta:hover {
+  background: #1d4ed8;
+}
+
+.vt-pricing-card__features {
+  padding: 24px 28px 32px;
+  background: #f7f9fc;
+}
+
+.vt-pricing-card__features-label {
+  display: block;
+  margin-bottom: 14px;
+  font-weight: 700;
+  color: var(--pr-navy);
+}
+
+.vt-pricing-card__features ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vt-pricing-card__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #4b5568;
+  font-size: 14.5px;
+}
+
+.vt-pricing-card__dot {
+  margin-top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pr-blue);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .vt-pricing__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vt-pricing-card.is-popular {
+    transform: none;
+  }
+}

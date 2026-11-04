@@ -1,0 +1,77 @@
+
+/* ==========================================
+   VISIONTECHSTUDIO — FINAL CTA
+========================================== */
+
+.vt-final-cta {
+  position: relative;
+  width: 100%;
+  padding: 110px clamp(20px, 5vw, 64px) 40px;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: 'DM Sans', Arial, sans-serif;
+  text-align: center;
+}
+
+.vt-final-cta__container {
+  position: relative;
+  z-index: 1;
+  width: min(700px, 100%);
+  margin: 0 auto;
+}
+
+.vt-final-cta__shape {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 30px;
+}
+
+.vt-final-cta h2 {
+  margin: 0 0 14px;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(34px, 5.5vw, 54px);
+  font-weight: 800;
+  color: #14213d;
+}
+
+.vt-final-cta p {
+  margin: 0 0 30px;
+  color: #6b7280;
+  font-size: 17px;
+}
+
+.vt-final-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.vt-final-cta__button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.vt-final-cta__watermark {
+  display: block;
+  margin-top: 70px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  font-size: clamp(60px, 14vw, 180px);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(180deg, #e3ecfd 0%, rgba(227, 236, 253, 0) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e3ecfd;
+  user-select: none;
+}
