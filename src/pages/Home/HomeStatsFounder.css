@@ -80,6 +80,24 @@
   height: 100%;
   object-fit: cover;
   display: block;
+
+  /* Starts zoomed-in and slightly dim, then settles into place as the
+     featured block reveals — a subtle "coming into focus" entrance. */
+  transform: scale(1.18);
+  filter: brightness(0.82) saturate(0.9);
+  transition:
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.2s ease;
+}
+
+.vt-values__featured.is-visible .vt-values__photo img {
+  transform: scale(1);
+  filter: brightness(1) saturate(1);
+}
+
+.vt-values__photo:hover img {
+  transform: scale(1.06);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .vt-value__icon {
@@ -135,6 +153,12 @@
   .vt-values [data-reveal] {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+
+  .vt-values__photo img {
+    transform: none;
+    filter: none;
     transition: none;
   }
 }

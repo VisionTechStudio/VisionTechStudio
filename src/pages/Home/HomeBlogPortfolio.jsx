@@ -1,4 +1,5 @@
 
+import { useEffect, useRef } from 'react'
 import './HomeBlogPortfolio.css'
 
 const posts = [
@@ -34,9 +35,42 @@ const posts = [
 
 function HomeBlogPortfolio() {
   const [featured, ...rest] = posts
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+
+    if (!section) return
+
+    const images = section.querySelectorAll('[data-reveal-image]')
+
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      !('IntersectionObserver' in window)
+    ) {
+      images.forEach((image) => image.classList.add('is-dropped'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-dropped')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -40px 0px' },
+    )
+
+    images.forEach((image) => observer.observe(image))
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section className="home-blog" id="blog">
+    <section className="home-blog" id="blog" ref={sectionRef}>
       <div className="home-blog__container">
 
         <div className="home-blog__header">
@@ -65,7 +99,7 @@ function HomeBlogPortfolio() {
         </div>
 
         <article className="home-blog__featured">
-          <div className="home-blog__featured-image">
+          <div className="home-blog__featured-image" data-reveal-image>
             <img src={featured.image} alt={featured.title} loading="lazy" />
           </div>
 
@@ -86,9 +120,13 @@ function HomeBlogPortfolio() {
         </article>
 
         <div className="home-blog__grid">
-          {rest.map((post) => (
+          {rest.map((post, index) => (
             <article className="home-blog__card" key={post.title}>
-              <div className="home-blog__card-image">
+              <div
+                className="home-blog__card-image"
+                data-reveal-image
+                style={{ '--drop-delay': `${index * 150}ms` }}
+              >
                 <img src={post.image} alt={post.title} loading="lazy" />
                 <span className="home-blog__category home-blog__category--overlay">
                   {post.category}

@@ -19,6 +19,24 @@
   box-sizing: border-box;
 }
 
+/* IMAGE DROP-IN REVEAL
+   Images start off-screen above the section and gently "fall" down
+   into place with a soft bounce as the section scrolls into view. */
+
+.home-blog [data-reveal-image] {
+  opacity: 0;
+  transform: translateY(-160px) rotate(-2deg);
+  transition:
+    opacity 0.8s ease,
+    transform 1.05s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: var(--drop-delay, 0ms);
+}
+
+.home-blog [data-reveal-image].is-dropped {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
 .home-blog__container {
   width: min(1200px, 100%);
   margin: 0 auto;
@@ -205,5 +223,13 @@
   .home-blog__featured,
   .home-blog__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-blog [data-reveal-image] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
