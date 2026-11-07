@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router'
 import './HomeHero.css'
 
@@ -61,11 +60,9 @@ function HomeHero() {
         <div
           className="vt-hero__strip-bg"
           aria-hidden="true"
-        />
-
-        <div
-          className="vt-hero__strip-overlay"
-          aria-hidden="true"
+          style={{
+            backgroundImage: "url('/HeroImg.jpeg')",
+          }}
         />
 
         <div className="vt-hero__strip-inner">
