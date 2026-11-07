@@ -43,7 +43,7 @@ function HomeHero() {
             className="vt-hero__word"
           >
             <img
-              src="/Hero_pic.png"
+              src="/Hero_pic .png"
               alt={heroWord}
               className="vt-hero__word-image"
             />

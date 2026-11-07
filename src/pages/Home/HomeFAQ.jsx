@@ -2,130 +2,116 @@
 import { useState } from 'react'
 import './HomeFAQ.css'
 
-const faqs = [
+const categories = [
+  'General',
+  'Payments',
+  'Features',
+  'Security',
+]
+
+const faqItems = [
   {
-    category: 'General',
-    question: 'What is VisionTechStudio and who do you work with?',
+    question: 'How often do you need to repair your roof?',
     answer:
-      'We’re a premium digital marketing studio specializing in service-based businesses. We take on a limited number of clients to provide in-house-level attention and deliver exceptional results.',
+      'Most roofs need minor repairs every 5–10 years and major repairs every 15–20 years. We recommend a yearly inspection, plus an extra check after heavy storms, so small issues get caught early.',
   },
   {
-    category: 'General',
-    question: 'How does VisionTechStudio differ from other agencies?',
+    question: 'Do you offer a next day delivery service?',
     answer:
-      'Most agencies try to serve everyone and deliver average results. We work with a limited number of clients, embedding deeply into your brand so it feels like an in-house team, without the overhead.',
+      'Yes, next-day delivery may be available depending on your location and the service you choose. Please contact our team to confirm availability for your area.',
   },
   {
-    category: 'Services',
-    question: 'Do you handle both organic social media and paid advertising?',
+    question: 'What is the standard delivery time?',
     answer:
-      'Yes. Our approach integrates organic content, paid social campaigns, and creative content to drive engagement, authority, and measurable results.',
+      'Standard delivery times depend on your location and the type of service requested. Our team can provide an estimated delivery schedule when you place your order.',
   },
   {
-    category: 'Services',
-    question: 'Can VisionTechStudio manage all my social media platforms?',
+    question: 'How can I access emergency services?',
     answer:
-      'Absolutely. We handle everything from strategy and content creation to community management and ad campaigns across Instagram, Facebook, TikTok, LinkedIn, and more.',
+      'You can contact our support team directly to request emergency assistance. Our team will guide you through the next steps and help arrange the required service.',
   },
   {
-    category: 'Process',
-    question: 'Do you offer custom strategies for each client?',
+    question: 'Do you offer an installation service?',
     answer:
-      'Every client gets a tailored strategy based on audience research, market positioning, and your business goals — built during our discovery phase before any work begins.',
-  },
-  {
-    category: 'Pricing',
-    question: 'Will VisionTechStudio help my business generate leads and revenue?',
-    answer:
-      'Yes. Our campaigns are designed to turn attention into real business outcomes, from generating leads to increasing sales and building long-term brand authority.',
+      'Yes, installation assistance can be arranged for eligible services. Contact our team to discuss your requirements and confirm the available installation options.',
   },
 ]
 
-const categories = ['General', 'Services', 'Process', 'Pricing']
-
-function PlusIcon({ open }) {
-  return (
-    <span className={`faq-plus ${open ? 'is-open' : ''}`} aria-hidden="true">
-      <span />
-      <span />
-    </span>
-  )
-}
-
-function HomeFAQ() {
-  const [activeCategory, setActiveCategory] = useState('General')
-  const [openIndex, setOpenIndex] = useState(0)
-
-  const visibleFaqs = faqs.filter((faq) => faq.category === activeCategory)
+function FAQ() {
+  const [hoverIndex, setHoverIndex] = useState(null)
 
   return (
-    <section className="home-faq" id="FAQ">
+    <section className="home-faq">
       <div className="home-faq__container">
+        <div className="home-faq__section-content">
+          <h2 className="home-faq__heading">
+            Frequently Asked Question
+          </h2>
 
-        <div className="home-faq__heading">
-          <h2>Frequently Asked Questions</h2>
-          <p>Frequently asked questions about VisionTechStudio services.</p>
+          <p className="home-faq__subtitle">
+            Frequently asked questions about GrowthLab services
+          </p>
         </div>
 
-        <div className="home-faq__tabs">
-          {categories.map((category) => (
-            <button
-              type="button"
-              key={category}
-              className={`home-faq__tab ${
-                activeCategory === category ? 'is-active' : ''
-              }`}
-              onClick={() => {
-                setActiveCategory(category)
-                setOpenIndex(0)
-              }}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        <div className="home-faq__list">
-          {visibleFaqs.map((faq, index) => {
-            const isOpen = openIndex === index
-            const panelId = `home-faq-panel-${activeCategory}-${index}`
-
-            return (
-              <article
-                className={`home-faq__item ${isOpen ? 'is-active' : ''}`}
-                key={faq.question}
+        <div className="home-faq__content">
+          <div className="home-faq__category-list">
+            {categories.map((category, index) => (
+              <span
+                key={category}
+                className={`home-faq__category ${
+                  index === 0 ? 'home-faq__category--active' : ''
+                }`}
+                aria-current={index === 0 ? 'true' : undefined}
               >
-                <h3 className="home-faq__question-heading">
+                {category}
+              </span>
+            ))}
+          </div>
+
+          <div className="home-faq__accordion">
+            {faqItems.map((item, index) => {
+              const isOpen = hoverIndex === index
+
+              return (
+                <article
+                  key={item.question}
+                  className={`home-faq__item ${
+                    isOpen ? 'home-faq__item--open' : ''
+                  }`}
+                  onMouseEnter={() => setHoverIndex(index)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
                   <button
                     type="button"
-                    className="home-faq__question"
+                    className="home-faq__question-button"
                     aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
                   >
-                    <span>{faq.question}</span>
-                    <PlusIcon open={isOpen} />
+                    <span className="home-faq__question">
+                      {item.question}
+                    </span>
+
+                    <span className="home-faq__icon-wrap">
+                      <span
+                        className={`home-faq__icon ${
+                          isOpen ? 'home-faq__icon--open' : ''
+                        }`}
+                      />
+                    </span>
                   </button>
-                </h3>
 
-                <div
-                  className="home-faq__answer-wrapper"
-                  id={panelId}
-                  aria-hidden={!isOpen}
-                  style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
-                >
-                  <div className="home-faq__answer-inner">
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              </article>
-            )
-          })}
+                  {isOpen && (
+                    <div className="home-faq__answer">
+                      <p>{item.answer}</p>
+                    </div>
+                  )}
+                </article>
+              )
+            })}
+          </div>
         </div>
-
       </div>
     </section>
   )
 }
 
-export default HomeFAQ
+export default FAQ

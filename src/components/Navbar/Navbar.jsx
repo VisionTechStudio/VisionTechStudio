@@ -1,18 +1,18 @@
-﻿import { NavLink } from 'react-router'
-import './Navbar.css'
+﻿import { NavLink } from 'react-router';
+import './Navbar.css';
 
 const navigationItems = [
   { label: 'Home', path: '/', end: true },
   { label: 'Services', path: '/services' },
-  { label: 'Blogs', path: '/blogs' },
-  { label: 'About Us', path: '/about-us' },
-]
+  { label: 'About', path: '/about-us' },
+  { label: 'Blog', path: '/blogs' },
+];
 
 const ctaItem = {
   label: 'Contact Us',
   path: '/contact-us',
   isCTA: true,
-}
+};
 
 function Navbar({
   id = 'menu-header-main',
@@ -20,62 +20,56 @@ function Navbar({
   includeCTA = false,
   onNavigate,
 }) {
-  const navigationClass = mobile
-    ? 'pxl-header-nav'
-    : 'pxl-nav-menu pxl-nav-menu1 pxl-mega-full-width pxl-nav-horizontal fr-style-default show-effect-slideup sub-style-default'
-
   const items = includeCTA
     ? [...navigationItems, ctaItem]
-    : navigationItems
+    : navigationItems;
 
   return (
     <nav
-      className={navigationClass}
+      className={
+        mobile
+          ? 'growthlab-navigation growthlab-navigation--mobile'
+          : 'growthlab-navigation growthlab-navigation--desktop'
+      }
       aria-label={mobile ? 'Mobile navigation' : 'Main navigation'}
     >
-      <div className="menu-header-main-container">
-        <ul
-          id={id}
-          className={`pxl-menu-primary clearfix${mobile ? ' is-mobile-navigation' : ' is-desktop-navigation'}`}
-        >
-          {items.map((item) => (
-            <li
-              className={[
-                'menu-item',
-                item.end ? 'menu-item-home' : '',
-                item.isCTA ? 'menu-item-cta' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              key={item.path}
+      <ul
+        id={id}
+        className={`growthlab-navigation__list ${
+          mobile ? 'is-mobile-navigation' : 'is-desktop-navigation'
+        }`}
+      >
+        {items.map((item) => (
+          <li
+            key={item.path}
+            className={[
+              'growthlab-navigation__item',
+              item.isCTA ? 'is-cta' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+          >
+            <NavLink
+              to={item.path}
+              end={item.end}
+              onClick={onNavigate}
+              className={({ isActive }) =>
+                [
+                  'growthlab-navigation__link',
+                  isActive ? 'is-active' : '',
+                  item.isCTA ? 'is-cta-link' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+              }
             >
-              <NavLink
-                to={item.path}
-                end={item.end}
-                onClick={onNavigate}
-                className={({ isActive }) =>
-                  [
-                    isActive ? 'pxl-onepage-active' : '',
-                    item.isCTA ? 'pxl-menu-cta' : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ') || undefined
-                }
-              >
-                {mobile ? (
-                  <span>{item.label}</span>
-                ) : (
-                  <span className="pxl-menu-item-text">
-                    {item.label}
-                  </span>
-                )}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
