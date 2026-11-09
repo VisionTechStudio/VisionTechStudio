@@ -1,17 +1,36 @@
-# Vision Tech Studio
+# Vision Tech Studio — React + Vite
 
-Blue-and-white marketing, development, and design agency website.
+Responsive marketing, development, and design agency website built with React, JavaScript, React Router, CSS, and Vite.
 
-## Local preview
+## Run locally
 
-Run `npm run dev` and open http://localhost:5173. Python 3 is required for the preview server.
+```bash
+npm install
+npm run dev
+```
 
-## Build and hosting
+Open http://localhost:5173. Python is no longer required.
 
-Run `npm run build` and publish the generated `dist/` directory with a static host. The homepage is `/` and the contact page is `/contact/`.
+## Build and verify
 
-The website source is in `site/`. This project uses static HTML, CSS, and JavaScript with the exported Framer runtime; it does not use Vite.
+```bash
+npm test
+npm run build
+npm run preview
+```
 
-## Contact form
+Deploy `dist/` to a static host. Routes: `/` and `/contact/`. SPA fallback configuration is included for Netlify and Vercel; other hosts must serve `index.html` for unknown page paths.
 
-The enquiry form saves a draft in the visitor’s browser. Email delivery is not configured. Some imagery and fonts still use Framer-hosted resources.
+## Source structure
+
+- `src/pages/`: homepage and contact page
+- `src/components/`: shared header, footer, FAQ, contact form, and newsletter form
+- `src/components/sections/`: individual page sections; pricing is retained but not rendered
+- `src/data/`: agency content, phone number, services, navigation, FAQs, and testimonials
+- `src/styles/`: preserved design styles, mobile adjustments, and React component styles
+- `public/assets/`: images, fonts, logo, and favicon
+- `tests/`: FAQ, form, mobile navigation, and service interaction tests
+
+Navigation, accordions, testimonials, forms, and mobile menu use React state. The original compiled Framer JavaScript runtime and static HTML pages have been removed. Some layout class names and styles from the reference are retained to preserve the visual design. Some media still loads from Framer-hosted URLs.
+
+The contact form currently saves an enquiry draft in local storage and explicitly states that it has not been sent. Newsletter delivery is not connected. A backend or form service is required for live submissions.
