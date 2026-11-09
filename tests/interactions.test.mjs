@@ -158,3 +158,30 @@ test("Testimonial controls move between quotes", async () => {
   fireEvent.click(screen.getByRole("button", { name: "Previous testimonial" }));
   assert.ok(screen.getByText("Michael Torres"));
 });
+test("Hovering a service restores its expanded artwork and details", async () => {
+  const Services = await load("/src/components/sections/ServicesSection.jsx");
+  render(
+    React.createElement(MemoryRouter, null, React.createElement(Services)),
+  );
+  const visual = screen.getByRole("button", { name: /Visual Identity/ });
+  fireEvent.mouseEnter(visual.closest("article"));
+  assert.equal(visual.getAttribute("aria-expanded"), "true");
+  assert.ok(
+    visual
+      .closest("article")
+      .querySelector('img[alt="Creative campaign artwork"]'),
+  );
+  assert.equal(
+    screen
+      .getByRole("button", { name: /Digital Marketing/ })
+      .getAttribute("aria-expanded"),
+    "false",
+  );
+});
+test("Client marquee exposes one accessible set of all five client logos", async () => {
+  const Clients = await load("/src/components/sections/ClientsSection.jsx");
+  render(React.createElement(Clients));
+  assert.equal(screen.getAllByRole("img").length, 5);
+  assert.ok(screen.getByRole("img", { name: "45 Degrees" }));
+  assert.ok(screen.getByRole("img", { name: "Capsule" }));
+});
