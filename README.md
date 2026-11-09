@@ -1,16 +1,17 @@
-# React + Vite
+# Vision Tech Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Blue-and-white marketing, development, and design agency website.
 
-Currently, two official plugins are available:
+## Local preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Run `npm run dev` and open http://localhost:5173. Python 3 is required for the preview server.
 
-## React Compiler
+## Build and hosting
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Run `npm run build` and publish the generated `dist/` directory with a static host. The homepage is `/` and the contact page is `/contact/`.
 
-## Expanding the ESLint configuration
+The current site source is in `site/`. Existing React source is retained in `src/` for reference and is not used by this static build.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Contact form
+
+The enquiry form saves a draft in the visitor’s browser. Email delivery is not configured. Some imagery and fonts still use Framer-hosted resources.
