@@ -1,0 +1,43 @@
+{
+  "approvedCommit": "685ca00",
+  "description": "Last approved HTML version before the React redesign. Original page and motion modules are retained; only bootstrap/React instance integration is adapted.",
+  "modules": {
+    "k1ldovQdv.exbj6quS.mjs": "48bd00f0de51cd60f73453d9ae8402c5d674981c2b8c27b9bbac856e2a67f747",
+    "Scroll_Reveal_Text.CkAwNJ8n.mjs": "b58b3e81166504f8c6bf7d4a12bf46c2698026105365efea0beb28b00fa95173",
+    "i6xpfY5Nu.D2H0bfBF.mjs": "c5ed1f0872df852486d489e5a1725dd23a912246c5cf46fd4127efdef61f8509",
+    "Mon9sVmTY5x4ZHjbQYyfIGxqcOTduMiELHBENfQnSIY.CF8tuc6_.mjs": "a8e2cf8936fb3fb9992f83a625ddae20e7099098087e721e41464e8e4b994f1d",
+    "D4rvUy7SA.C0LcnBIr.mjs": "d23ec6e893dfb8b92485080b21b73fd46d8e26c8d0e775f8350af291e5b2f5b8",
+    "z5zLOuLyO.GD-9L5oF.mjs": "088ebc6c964c0f02b922a5588ea561883bd6934b064b9805ebf0dd9767b3c896",
+    "FAL6zvfOA.DCxHfuUi.mjs": "1c754987e629f5611356b2307251ca72e8d29d02d3ad51dd4a8eacb10a23e0b2",
+    "LFgEpOBsz.D8jTqN27.mjs": "f7c0dc462131b1c4e3cd2a7c6bd2b72a0e7e8e4363ef91f18d24fd486e20b7e9",
+    "N9e5G2YyS.v-9xijqh.mjs": "b80dd4e2474f5025fe076241ada7bfa5d77809676f94ab939311f18f8d9a2062",
+    "JWJxQelKF.CEbl6vd2.mjs": "4ff567e344ea2d38c18a9e04647df02d0af7e51afaff2eba5398c9324320de07",
+    "framer.GwocWY3_.mjs": "9d4604419f9128b8516a3d7fdcd479135785601cbcf9124f79e920520db3747a",
+    "rolldown-runtime.Dh6celcD.mjs": "4cf74e844dce3bc61a15b3687b05aceff75f4da99181156d04f8ef181283f429",
+    "KfohvcYpg.CxV2MCon.mjs": "4f516cbf0d8212d1e421253dcf9a1e0d32df29bab402b953a5ed2878d5303fe0",
+    "vrdB5Lb7i.CgTmhCxo.mjs": "723c6a09bb136bc53aea22edcf13863ff2a2c0f2c7905312dfc372ed73daf080",
+    "OeghpZMOMvgTCQ4q2xqplBoQbjdHsacSDjo__jr-RZs.BT6hKewD.mjs": "e322ad4625b99ab9a104e6f33b67e7647d9a9bf64e575dc5ea520ac63205bafc",
+    "gGc7CFZM9.DufYypnV.mjs": "09d3bee3e8ee46d2ac8b9c3417935fe6d3d3b3a1d6850d60eba94dc0624d9801",
+    "motion.Bz1Ic6hv.mjs": "137971f5f96d9f000d94c4516ccb6b450b9d564fba8f39f44000ab40e3783e99",
+    "IRTYTke5b.DKscZZLg.mjs": "57bbc12889684d3e8db91437453265646b366380829b084c827777f73d9d6407",
+    "shared-lib.C4T4v46o.mjs": "ecf9c491371f343461d719e92bb62d0da83b24825918191d38440ba116c25f53",
+    "QE1uW6T_o.CxoHEoYV.mjs": "6ffafa0dfdf81ab37464938d54947347fa305f64ddd2d637f71acd0bbfb1e7e6",
+    "YozOWmvsl.CCYtqhU1.mjs": "d1d502cef852d2f9c8cba90c0fc98828e5065f37e349315f8b82d2d670b93b4d",
+    "yMm1zDbQ5.CXwHZEy4.mjs": "1170806a023962ce8193711ad844061a5d637db6e1b8fdb85b3ac8419564c518",
+    "qa4boJ1UL.C28LXmpn.mjs": "ca79db6f8cd002b3dc5ee7adecb8c8629c041367d8ec0149f0fdf3ad448d4aa5",
+    "XuFPEfl5fGzrvnDz2QcAs54NqC5wnkj-XrWcan_9b40.ChBqZVLj.mjs": "3ed8280f435083b4f26fe8cde6b02dea5a980c30f6c226c723eca03b625f93a1",
+    "9lNd1HA0Y5z3FxLNdXbzq5OxlXydzUm9wL1LO12F7X8.DKq24c5U.mjs": "053fda27ea94c2e170ee9c68e82a378b59bd35e9ae865d0d97f5a09f171ac9be",
+    "emahqVccs.zh8DQFxl.mjs": "8ec98ed4392ad6ce48bdb0fc226505384751b8c808b2f62976b90e86023bf992",
+    "d6ICtN5eg.BksolhXg.mjs": "826f92091b72974ae077b61dc0c2d5d53086dabab1def99a06144482b8dea0c0",
+    "VwdpvcVVP.BvhzYyvv.mjs": "c16232d514dc78e6f3a4f73975aaac8c0fe48d02fb146eaa3dca500cd68248e6",
+    "iPofy7db5.DnWrGUa4.mjs": "dec28fcd59fdd605a6e7078ec87ba6fb4ca52e56b5391743af043c4928e1f900"
+  },
+  "styles": {
+    "preserved.css": "65e5bf61122b07e5581ab54c00a824929b8f0c1f28f7d555889e3ca3e268a384",
+    "mobile.css": "e53421f566e543c386897b3fa50a7dc2f6e73d9464752ea1c49587d0731749ad"
+  },
+  "navigationBodyHash": "e7f9ec0b565207a441cb183f0146e38b57f129ecc88c83c98d12e0df0476b747",
+  "contactFormBodyHash": "a5ef58680dff5b08ac8ee92fd026fcf8ef8da3b27e65a701c7c25d90b20b1f38",
+  "initialDataHash": "b8ff73da3ddf3ed56762f29a21e50e57f5b7a5677bfbcb8a311697df614029d7",
+  "bootstrapHash": "6f50fd63154949f1e51de404591d64f4e872fc778407d4fbb0222286e32f9e6d"
+}

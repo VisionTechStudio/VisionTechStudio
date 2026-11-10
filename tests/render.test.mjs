@@ -1,0 +1,37 @@
+import { after, afterEach, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { JSDOM } from 'jsdom';
+import { createServer } from 'vite';
+import { readFileSync } from 'node:fs';
+
+// DOM integration tests, not a substitute for visual browser verification.
+const dom = new JSDOM('<!doctype html><html><head></head><body><div id="test-root"></div></body></html>', {url:'http://localhost:5173/',pretendToBeVisual:true});
+for(const name of ['window','document','navigator','HTMLElement','Element','SVGElement','HTMLImageElement','Node','MutationObserver','DOMParser','CustomEvent','Event','Image','localStorage','sessionStorage','location','AbortController','AbortSignal','FormData'])Object.defineProperty(globalThis,name,{configurable:true,writable:true,value:dom.window[name]});
+for(const key of Object.getOwnPropertyNames(window))if(/^(?:HTML|SVG).*Element$/.test(key)||['Document','DocumentFragment','ShadowRoot'].includes(key))Object.defineProperty(globalThis,key,{configurable:true,writable:true,value:window[key]});
+globalThis.self=window;globalThis.getComputedStyle=window.getComputedStyle.bind(window);globalThis.requestAnimationFrame=window.requestAnimationFrame.bind(window);globalThis.cancelAnimationFrame=window.cancelAnimationFrame.bind(window);
+window.matchMedia=globalThis.matchMedia=query=>({matches:query.includes('min-width')&&!query.includes('max-width'),media:query,addEventListener(){},removeEventListener(){},addListener(){},removeListener(){}});
+class Observer{observe(){}unobserve(){}disconnect(){}}
+window.ResizeObserver=globalThis.ResizeObserver=Observer;window.IntersectionObserver=globalThis.IntersectionObserver=Observer;
+window.scrollTo=()=>{};HTMLElement.prototype.scrollIntoView=function(){};window.CSS=globalThis.CSS={supports:()=>false,escape:value=>value};
+const cachedData=document.createElement('script');cachedData.type='framer/handover';cachedData.id='__framer__handoverData';cachedData.textContent=readFileSync(new URL('../src/preserved/initial-data.json',import.meta.url),'utf8');document.body.prepend(cachedData);
+const server=await createServer({configFile:false,logLevel:'silent',esbuild:{jsx:'automatic'},optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true},appType:'custom'});
+const React=await import('react');const {createRoot}=await import('react-dom/client');
+const {getPageRoot}=await server.ssrLoadModule('/src/preserved/runtime/script_main.CV1Flg4e.mjs');
+let root;
+async function until(check){const deadline=Date.now()+8000;while(!check()){if(Date.now()>deadline)throw new Error('Original page did not render expected content');await new Promise(resolve=>setTimeout(resolve,20));}}
+afterEach(()=>{root?.unmount();root=null;document.getElementById('test-root').replaceChildren();});
+after(async()=>{await server.close();dom.window.close();});
+test('Approved homepage mounts as a real React tree with its original sections',async()=>{
+ const page=await getPageRoot({routeId:'augiA20Il',localeId:'default',shouldResolveInitialRouteContentState:true});assert.ok(React.isValidElement(page));
+ const host=document.getElementById('test-root');root=createRoot(host);root.render(page);
+ await until(()=>host.textContent.includes('Our Clients')&&host.textContent.includes('Digital Marketing')&&host.textContent.includes('Alongside')&&host.textContent.includes('Hypertech'));
+ assert.match(host.textContent,/DEV, DESIGN &/);assert.match(host.textContent,/97%/);assert.match(host.textContent,/IRELAND/);assert.match(host.textContent,/CANADA/);
+ assert.ok(host.querySelector('.framer-Qkz13'),'Original service presentation');assert.ok(host.querySelector('.framer-Y6dBr img'),'Original service imagery');assert.ok(host.querySelector('.framer-1n71jbg'),'Original client ticker');
+});
+test('Approved contact page mounts with its form and updated phone number',async()=>{
+ window.history.replaceState(null,'','/contact/');
+ const page=await getPageRoot({routeId:'roctcboM5',localeId:'default',shouldResolveInitialRouteContentState:true});
+ const host=document.getElementById('test-root');root=createRoot(host);root.render(page);
+ await until(()=>host.textContent.includes('First Name')&&host.textContent.includes('+92 322 5396617'));
+ assert.ok(host.querySelector('form.framer-7rfox'));assert.ok(host.querySelector('input[type="email"]'));assert.ok(host.querySelector('select'));assert.match(host.textContent,/What services does your agency offer/);
+});

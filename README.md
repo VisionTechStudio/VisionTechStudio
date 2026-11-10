@@ -1,6 +1,6 @@
 # Vision Tech Studio — React + Vite
 
-Responsive marketing, development, and design agency website built with React, JavaScript, React Router, CSS, and Vite.
+The approved website is rendered as a React app without redesigning its sections or replacing its animations.
 
 ## Run locally
 
@@ -9,9 +9,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173. Python is no longer required.
-
-## Build and verify
+Open http://localhost:5173. Routes: `/` and `/contact/`.
 
 ```bash
 npm test
@@ -19,18 +17,25 @@ npm run build
 npm run preview
 ```
 
-Deploy `dist/` to a static host. Routes: `/` and `/contact/`. SPA fallback configuration is included for Netlify and Vercel; other hosts must serve `index.html` for unknown page paths.
+Deploy `dist/`. SPA fallback configuration is included for Netlify and Vercel.
 
-## Source structure
+## How the faithful conversion works
 
-- `src/pages/`: homepage and contact page
-- `src/components/`: shared header, footer, FAQ, contact form, and newsletter form
-- `src/components/sections/`: individual page sections; pricing is retained but not rendered
-- `src/data/`: agency content, phone number, services, navigation, FAQs, and testimonials
-- `src/styles/`: preserved design styles, mobile adjustments, and React component styles
-- `public/assets/`: images, fonts, logo, and favicon
-- `tests/`: FAQ, form, mobile navigation, and service interaction tests
+The approved HTML export already used React components and Framer motion code. Replacing those components changed the visual design and interactions. This version retains that original React component tree and the original styling and motion implementation.
 
-Navigation, accordions, testimonials, forms, and mobile menu use React state. The original compiled Framer JavaScript runtime and static HTML pages have been removed. Some layout class names and styles from the reference are retained to preserve the visual design. Some media still loads from Framer-hosted URLs.
+- `src/main.jsx`: standard React DOM entry point.
+- `src/App.jsx` and `src/pages/`: JSX application and page entry components.
+- `src/preserved/PreservedPage.jsx`: renders the original React page tree with its original layout, router, and motion providers.
+- `src/preserved/runtime/`: original page, component, ticker, scroll-reveal, and motion modules. A small compatibility module routes them to the app's single installed React 18 instance, matching the original export's React version.
+- `src/preserved/preserved.css` and `mobile.css`: unchanged approved styling and responsive overrides.
+- `src/preserved/enhancements/`: approved navigation and local enquiry-draft behavior.
+- `src/preserved/initial-data.json`: original cached case-study/blog data, included by Vite before the app starts.
+- `src/preserved/approved-manifest.json`: checksums identifying the approved page, component, motion, style, and enhancement implementations.
+- `public/assets/`: logo, favicon, media, and fonts.
+- `tests/`: source-preservation checks and actual React DOM mounting checks for both pages.
 
-The contact form currently saves an enquiry draft in local storage and explicitly states that it has not been sent. Newsletter delivery is not connected. A backend or form service is required for live submissions.
+There are no HTML iframes or `dangerouslySetInnerHTML` page wrappers. The original page components render through React. The original exporter bootstrap/editor badge is disabled because the JSX app owns mounting.
+
+The approved baseline is commit `685ca00`, before the redesigning conversion. Pricing remains in its original component code and is hidden on the homepage, as requested. Some media and fonts continue to use Framer hosting.
+
+The contact form retains the approved behavior: it saves a local browser draft and does not send an email. Live submission delivery still needs a backend or form service.
