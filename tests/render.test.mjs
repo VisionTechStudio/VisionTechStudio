@@ -35,3 +35,21 @@ test('Approved contact page mounts with its form and updated phone number',async
  await until(()=>host.textContent.includes('First Name')&&host.textContent.includes('+92 322 5396617'));
  assert.ok(host.querySelector('form.framer-7rfox'));assert.ok(host.querySelector('input[type="email"]'));assert.ok(host.querySelector('select'));assert.match(host.textContent,/What services does your agency offer/);
 });
+test('About page uses the supplied content and review design within the existing site', async()=>{
+ window.history.replaceState(null,'','/about/');document.body.classList.add('about-page');
+ const {default:AboutPage}=await server.ssrLoadModule('/src/pages/AboutPage.jsx');
+ const host=document.getElementById('test-root');root=createRoot(host);root.render(React.createElement(AboutPage));
+ await until(()=>host.textContent.includes('Our Impact')&&host.textContent.includes('Good work starts with good partnerships.'));
+ assert.ok(host.querySelector('.framer-zXAh7'),'Original About layout');
+ assert.equal(host.querySelectorAll('.vts-review-column').length,3);
+ assert.match(host.textContent,/FICTIONAL DEMO CONTENT/);
+ assert.equal(document.title,'About Us | Vision Tech Studio');
+ assert.equal(host.querySelector('iframe'),null);
+ const {installNavigation}=await server.ssrLoadModule('/src/preserved/enhancements/navigation.js');
+ const {installAboutLinks}=await server.ssrLoadModule('/src/about/navigation.js');
+ installNavigation();installAboutLinks();
+ assert.equal(host.querySelector('.homepage-section-links a[href="/about/"]')?.textContent,'About');
+ assert.ok(host.querySelector('.homepage-section-links a[href="/#services"]'));
+ assert.ok(host.querySelector('.homepage-footer-links a[href="/about/"]'));
+ document.body.classList.remove('about-page');
+});

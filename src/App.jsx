@@ -2,6 +2,7 @@ import React from 'react';
 import BrandFilters from './components/BrandFilters';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 class PageErrorBoundary extends React.Component {
   state = { error: null };
@@ -12,6 +13,8 @@ class PageErrorBoundary extends React.Component {
   }
 }
 export default function App() {
-  const contact = window.location.pathname.replace(/\/$/, '') === '/contact';
-  return <PageErrorBoundary><BrandFilters />{contact ? <ContactPage /> : <HomePage />}</PageErrorBoundary>;
+  const path = window.location.pathname.replace(/\/$/, '');
+  const contact = path === '/contact';
+  const about = path === '/about';
+  return <PageErrorBoundary><BrandFilters />{about ? <React.Suspense fallback={null}><AboutPage /></React.Suspense> : contact ? <ContactPage /> : <HomePage />}</PageErrorBoundary>;
 }
