@@ -10,6 +10,7 @@ import './preserved/mobile.css';
 
 // These are the same navigation/form enhancements as the approved HTML version.
 document.body.classList.toggle('about-page', window.location.pathname.replace(/\/$/, '') === '/about');
+document.body.classList.toggle('blog-page', /^\/blog(?:\/|$)/.test(window.location.pathname));
 installNavigation();
 installAboutLinks();
 if (window.location.pathname.startsWith('/contact')) installContactForm();

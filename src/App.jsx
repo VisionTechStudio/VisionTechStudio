@@ -2,6 +2,8 @@ import React from 'react';
 import BrandFilters from './components/BrandFilters';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
+const BlogArticlePage = React.lazy(() => import('./pages/BlogArticlePage'));
+const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 class PageErrorBoundary extends React.Component {
@@ -16,5 +18,7 @@ export default function App() {
   const path = window.location.pathname.replace(/\/$/, '');
   const contact = path === '/contact';
   const about = path === '/about';
-  return <PageErrorBoundary><BrandFilters />{about ? <React.Suspense fallback={null}><AboutPage /></React.Suspense> : contact ? <ContactPage /> : <HomePage />}</PageErrorBoundary>;
+  const blog = path === '/blog';
+  const articleSlug = path.startsWith('/blog/') ? decodeURIComponent(path.slice('/blog/'.length)) : null;
+  return <PageErrorBoundary><BrandFilters />{articleSlug ? <React.Suspense fallback={null}><BlogArticlePage slug={articleSlug} /></React.Suspense> : blog ? <React.Suspense fallback={null}><BlogPage /></React.Suspense> : about ? <React.Suspense fallback={null}><AboutPage /></React.Suspense> : contact ? <ContactPage /> : <HomePage />}</PageErrorBoundary>;
 }

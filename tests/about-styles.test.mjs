@@ -12,3 +12,11 @@ test('About stylesheet cannot hide or collapse the document body', () => {
     });
   });
 });
+
+ test('Blog stylesheet cannot hide the document body', () => {
+  const css = postcss.parse(readFileSync(new URL('../src/blog/blog.css', import.meta.url), 'utf8'));
+  css.walkRules(rule => {
+    if (!rule.selectors.includes('body.blog-page')) return;
+    rule.walkDecls(d => assert.ok(!(['display','visibility','opacity'].includes(d.prop) && ['none','hidden','0'].includes(d.value))));
+  });
+});

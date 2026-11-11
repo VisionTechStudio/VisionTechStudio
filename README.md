@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173. Routes: `/`, `/about/`, and `/contact/`.
+Open http://localhost:5173. Routes: `/`, `/about/`, `/blog/`, and `/contact/`.
 
 ```bash
 npm test
@@ -32,7 +32,7 @@ The approved HTML export already used React components and Framer motion code. R
 - `src/preserved/initial-data.json`: original cached case-study/blog data, included by Vite before the app starts.
 - `src/preserved/approved-manifest.json`: checksums identifying the approved page, component, motion, style, and enhancement implementations.
 - `public/assets/`: logo, favicon, media, and fonts.
-- `tests/`: source-preservation checks and actual React DOM mounting checks for all three pages.
+- `tests/`: source-preservation checks and actual React DOM mounting checks for all four pages.
 
 There are no HTML iframes or `dangerouslySetInnerHTML` page wrappers. The original page components render through React. The original exporter bootstrap/editor badge is disabled because the JSX app owns mounting.
 
@@ -41,3 +41,7 @@ The approved baseline is commit `685ca00`, before the redesigning conversion. Pr
 The contact form retains the approved behavior: it saves a local browser draft and does not send an email. Live submission delivery still needs a backend or form service.
 
 The About page integrates the supplied About layout and review design as React components. Its styles are scoped to `/about/`; the current shared header, footer, logo, and contact details are retained. Review names, quotes, and results from the supplied file remain clearly labeled fictional demo content.
+
+The Blog listing uses the supplied four-article layout through the original React page module, with page-scoped styles and shared navigation to `/blog/`.
+
+Blog article links also support direct loads and refreshes at `/blog/:slug`. The listing’s supplied data cache is merged with the homepage cache at build time so neither page waits for its initial article cards.
