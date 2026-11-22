@@ -1,47 +1,29 @@
-# Vision Tech Studio — React + Vite
+# Vision Tech Studio
 
-The approved website is rendered as a React app without redesigning its sections or replacing its animations.
+Independent React 18 + Vite website. Pages render local JSX section components; images, fonts, and article content are served from this repository. There is no Framer runtime, CMS request, template embedding, or hosted page requirement.
 
-## Run locally
+## Local preview
 
-```bash
+```sh
 npm install
-npm run dev
+npm run dev -- --port 5174
 ```
 
-Open http://localhost:5173. Routes: `/`, `/about/`, `/blog/`, and `/contact/`.
+Open http://127.0.0.1:5174/. Build with `npm run build`; validate with `npm test`.
 
-```bash
-npm test
-npm run build
-npm run preview
-```
+## Code structure
 
-Deploy `dist/`. SPA fallback configuration is included for Netlify and Vercel.
+- `src/app`: route resolution and page selection.
+- `src/pages`: Home, About, Blog, article and Contact compositions.
+- `src/components/layout`: shared header, mobile menu and footer.
+- `src/components/sections`: editable JSX sections, service and FAQ accordions.
+- `src/features/about`: review content and scroll animation.
+- `src/config/site.js`: brand, navigation, phone and social links.
+- `src/styles`: locally retained visual styles and owned interaction styles. Opaque `vts-*` selectors preserve the existing design; they have no external runtime dependency.
+- `public/assets`: local imagery, icons and fonts.
 
-## How the faithful conversion works
+Pricing is retained as `HomePricing.jsx` but is not mounted on Home. The contact form saves a local draft; sending enquiries requires a backend integration. Changes are local for review and have not been pushed to GitHub.
 
-The approved HTML export already used React components and Framer motion code. Replacing those components changed the visual design and interactions. This version retains that original React component tree and the original styling and motion implementation.
+## Browser regression checks
 
-- `src/main.jsx`: standard React DOM entry point.
-- `src/App.jsx` and `src/pages/`: JSX application and page entry components.
-- `src/preserved/PreservedPage.jsx`: renders the original React page tree with its original layout, router, and motion providers.
-- `src/preserved/runtime/`: original page, component, ticker, scroll-reveal, and motion modules. A small compatibility module routes them to the app's single installed React 18 instance, matching the original export's React version.
-- `src/preserved/preserved.css` and `mobile.css`: unchanged approved styling and responsive overrides.
-- `src/preserved/enhancements/`: approved navigation and local enquiry-draft behavior.
-- `src/preserved/initial-data.json`: original cached case-study/blog data, included by Vite before the app starts.
-- `src/preserved/approved-manifest.json`: checksums identifying the approved page, component, motion, style, and enhancement implementations.
-- `public/assets/`: logo, favicon, media, and fonts.
-- `tests/`: source-preservation checks and actual React DOM mounting checks for all four pages.
-
-There are no HTML iframes or `dangerouslySetInnerHTML` page wrappers. The original page components render through React. The original exporter bootstrap/editor badge is disabled because the JSX app owns mounting.
-
-The approved baseline is commit `685ca00`, before the redesigning conversion. Pricing remains in its original component code and is hidden on the homepage, as requested. Some media and fonts continue to use Framer hosting.
-
-The contact form retains the approved behavior: it saves a local browser draft and does not send an email. Live submission delivery still needs a backend or form service.
-
-The About page integrates the supplied About layout and review design as React components. Its styles are scoped to `/about/`; the current shared header, footer, logo, and contact details are retained. Review names, quotes, and results from the supplied file remain clearly labeled fictional demo content.
-
-The Blog listing uses the supplied four-article layout through the original React page module, with page-scoped styles and shared navigation to `/blog/`.
-
-Blog article links also support direct loads and refreshes at `/blog/:slug`. The listing’s supplied data cache is merged with the homepage cache at build time so neither page waits for its initial article cards.
+With the preview running, run `npm run test:browser`. The check compares process pinning and work/testimonial geometry to reference measurements, then checks five viewport widths and navigation/accordion behavior. On macOS it uses installed Google Chrome. Elsewhere install the test browser using `npx playwright install chromium`. Override the preview address with `PREVIEW_URL`.
